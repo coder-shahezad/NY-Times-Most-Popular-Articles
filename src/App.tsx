@@ -1,7 +1,12 @@
-import ArticleContainer from './containers/ArticleContainer';
+import '@mantine/core/styles.css';
+import { MantineProvider } from '@mantine/core';
+import LayoutContainer from './containers/LayoutContainer';
+import { resolver } from './theme';
 
-const App = () => {
-  return <ArticleContainer />;
-};
-
-export default App;
+export default function App() {
+  return (
+    <MantineProvider cssVariablesResolver={resolver}>
+      <LayoutContainer />
+    </MantineProvider>
+  );
+}

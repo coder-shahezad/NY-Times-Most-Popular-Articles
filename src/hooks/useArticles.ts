@@ -1,9 +1,10 @@
 import { useEffect, useState, useCallback } from 'react';
 import { fetchArticles } from '../services/api';
+import { ArticleProps } from '../interfaces/Article';
 
 const useArticles = () => {
   const [isLoading, setIsLoading] = useState(false);
-  const [articles, setArticles] = useState([]);
+  const [articles, setArticles] = useState<Array<ArticleProps>>([]);
 
   const fetchData = useCallback(async () => {
     setIsLoading(true);
