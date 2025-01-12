@@ -1,8 +1,9 @@
-const { VITE_BASE_URL, VITE_API_KEY } = import.meta.env;
+const API_KEY = 'QSHdLF7qVHLq4N0YyKPYOZ0UwmL7kTcw';
+const BASE_URL = 'https://api.nytimes.com/svc/mostpopular/v2/viewed';
 
 export const fetchArticles = async (period: number = 1) => {
   try {
-    const url = `${VITE_BASE_URL}/${period}.json?api-key=${VITE_API_KEY}`;
+    const url = `${BASE_URL}/${period}.json?api-key=${API_KEY}`;
     const response = await fetch(url);
 
     if (!response.ok) {
