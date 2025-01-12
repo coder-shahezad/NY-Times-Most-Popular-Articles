@@ -8,4 +8,5 @@ export interface ArticleProps {
   abstract: string;
   media: Array<MediaProps>;
   source: string;
+  url: string;
 }
