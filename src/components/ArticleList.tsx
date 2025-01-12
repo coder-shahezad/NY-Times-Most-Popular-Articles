@@ -1,4 +1,12 @@
-import { Card, Container, Grid, Image, Text } from '@mantine/core';
+import {
+  Card,
+  Container,
+  Grid,
+  Group,
+  Image,
+  Text,
+  Title,
+} from '@mantine/core';
 import ArticleSkeleton from './ArticleSkeleton';
 import useArticles from '../hooks/useArticles';
 
@@ -6,19 +14,30 @@ const ArticleList = () => {
   const { isLoading, articles } = useArticles();
   return (
     <Container size="xxl">
-      <Grid>
-        {isLoading ? (
-          <>
-            {Array.from({ length: 12 }, (_, index) => (
-              <Grid.Col key={index} span={3}>
-                <ArticleSkeleton isLoading={isLoading} />
-              </Grid.Col>
-            ))}
-          </>
-        ) : (
-          <>
+      {isLoading ? (
+        <Grid>
+          {Array.from({ length: 12 }, (_, index) => (
+            <Grid.Col key={index} span={3}>
+              <ArticleSkeleton isLoading={isLoading} />
+            </Grid.Col>
+          ))}
+        </Grid>
+      ) : (
+        <>
+          <Grid>
+            <Grid.Col>
+              <Group justify="space-between" mt="md" mb="xs">
+                <Title order={1}>Trending</Title>
+                <Text size="sm" lineClamp={2}>
+                  Good morning. These stories are most popular with our readers
+                  this minute.
+                </Text>
+              </Group>
+            </Grid.Col>
+          </Grid>
+          <Grid>
             {articles.map((article, index) => {
-              const { id, title, abstract, media, source } = article;
+              const { id, title, abstract, media, source, url } = article;
               const articleImage = media?.[0]?.['media-metadata']?.[2]?.url;
               return (
                 <Grid.Col span={3}>
@@ -29,6 +48,9 @@ const ArticleList = () => {
                     radius="md"
                     withBorder
                     h="350"
+                    component="a"
+                    href={url}
+                    target="_blank"
                   >
                     <Card.Section>
                       <Image src={articleImage} height={160} alt={title} />
@@ -44,9 +66,9 @@ const ArticleList = () => {
                 </Grid.Col>
               );
             })}
-          </>
-        )}
-      </Grid>
+          </Grid>
+        </>
+      )}
     </Container>
   );
 };
