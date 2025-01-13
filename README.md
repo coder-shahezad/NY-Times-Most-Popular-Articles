@@ -8,6 +8,7 @@ This template provides a minimal setup to integrate **React** with **Vite**, com
 - [Running the Application](#running-the-application)
 - [Running Unit Tests](#running-unit-tests)
 - [Test Coverage](#test-coverage)
+- [Running Component UI Testing](#running-component-ui-testing)
 
 ## Installation
 
@@ -67,6 +68,16 @@ To ensure your code follows best practices, run the linting script to analyze yo
 npm run lint
 ```
 
+## Running Cypress Component UI Testing
+
+To run the cypress component unit tests, execute the following command:
+
+```bash
+npm run cy:open-unit
+```
+
+This will run all the unit test cases defined in the project and output the results to the terminal.
+
 ### Explanation of Scripts:
 
 - **`npm install`:** This script will install all the required packages listed in the `package.json` file.
@@ -75,3 +86,4 @@ npm run lint
 - **`npm run lint`:** Runs ESLint on your codebase to ensure it adheres to the defined style guide.
 - **`npm run test`:** Runs unit tests using Jest.
 - **`npm run test:coverage`:** Runs Jest and also collects code coverage data.
+- **`npm run cy:open-unit`:** Runs cypress component UI tests.
