@@ -10,7 +10,7 @@
     "esModuleInterop": true,
     "moduleResolution": "node",
     "jsx": "react",
-    "types": ["jest", "node"],
+    "types": ["jest", "node", "cypress", "@cypress/react"],
     "strict": true
   }
 }

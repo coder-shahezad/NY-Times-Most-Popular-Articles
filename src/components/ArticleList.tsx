@@ -1,3 +1,4 @@
+import React from 'react';
 import {
   Card,
   Container,
@@ -8,9 +9,15 @@ import {
   Title,
 } from '@mantine/core';
 import ArticleSkeleton from './ArticleSkeleton';
-import useArticles from '../hooks/useArticles';
+import { useArticles as defaultUseArticles } from '../hooks/useArticles';
 
-const ArticleList = () => {
+interface ArticleListProps {
+  useArticles?: typeof defaultUseArticles; // Accept useArticles as a prop
+}
+
+const ArticleList: React.FC<ArticleListProps> = ({
+  useArticles = defaultUseArticles,
+}) => {
   const { isLoading, articles } = useArticles();
   return (
     <Container size="xxl">
@@ -47,7 +54,7 @@ const ArticleList = () => {
                     padding="lg"
                     radius="md"
                     withBorder
-                    h="350"
+                    h={{ md: '380', xl: '350' }}
                     component="a"
                     href={url}
                     target="_blank"

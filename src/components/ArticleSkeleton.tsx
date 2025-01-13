@@ -6,7 +6,14 @@ interface ArticleSkeletonProps {
 
 const ArticleSkeleton = ({ isLoading }: ArticleSkeletonProps) => {
   return (
-    <Card shadow="sm" padding="lg" radius="md" withBorder h="350">
+    <Card
+      data-testid="article-skeleton"
+      shadow="sm"
+      padding="lg"
+      radius="md"
+      withBorder
+      h="350"
+    >
       <Skeleton visible={isLoading}>
         <Skeleton height={160} mb="sm" />
         <Skeleton height={8} width={'40%'} ta="end" mb="sm" />

@@ -2,7 +2,7 @@ import { useEffect, useState, useCallback } from 'react';
 import { fetchArticles } from '../services/api';
 import { ArticleProps } from '../interfaces/Article';
 
-const useArticles = () => {
+export const useArticles = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [articles, setArticles] = useState<Array<ArticleProps>>([]);
 
@@ -24,5 +24,3 @@ const useArticles = () => {
 
   return { isLoading, articles };
 };
-
-export default useArticles;
