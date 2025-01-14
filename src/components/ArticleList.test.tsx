@@ -1,30 +1,36 @@
+import React from 'react';
 import { render, screen, waitFor } from '@testing-library/react';
 import '@testing-library/jest-dom';
-import useArticles from '../hooks/useArticles';
+import { useArticles } from '../hooks/useArticles';
 import ArticleList from './ArticleList';
+import { MantineProvider } from '@mantine/core';
 
 jest.mock('../hooks/useArticles', () => ({
-  __esModule: true,
-  default: jest.fn(),
+  useArticles: jest.fn(),
 }));
 
 describe('ArticleList', () => {
+  beforeEach(() => {
+    jest.clearAllMocks();
+  });
+
   it('should render skeletons when loading', () => {
-    // Mock the useArticles hook to return isLoading as true
     (useArticles as jest.Mock).mockReturnValue({
       isLoading: true,
       articles: [],
     });
 
-    render(<ArticleList />);
+    render(
+      <MantineProvider>
+        <ArticleList />
+      </MantineProvider>
+    );
 
-    // Check if the skeleton loader is rendered (assuming 12 skeletons are rendered)
     const skeletons = screen.getAllByTestId('article-skeleton');
     expect(skeletons).toHaveLength(12);
   });
 
   it('should render articles when loaded', async () => {
-    // Mock the useArticles hook to return isLoading as false and some articles
     (useArticles as jest.Mock).mockReturnValue({
       isLoading: false,
       articles: [
@@ -45,11 +51,15 @@ describe('ArticleList', () => {
       ],
     });
 
-    render(<ArticleList />);
+    render(
+      <MantineProvider>
+        <ArticleList />
+      </MantineProvider>
+    );
 
-    // Wait for articles to load and check if the article title is rendered
-    await waitFor(() => screen.getByText('Test Article 1'));
-    expect(screen.getByText('Test Article 1')).toBeInTheDocument();
+    await waitFor(() =>
+      expect(screen.getByText('Test Article 1')).toBeInTheDocument()
+    );
     expect(screen.getByText('Test Article 2')).toBeInTheDocument();
   });
 
@@ -59,9 +69,13 @@ describe('ArticleList', () => {
       articles: [],
     });
 
-    render(<ArticleList />);
+    render(
+      <MantineProvider>
+        <ArticleList />
+      </MantineProvider>
+    );
 
     const skeletons = screen.getAllByTestId('article-skeleton');
-    expect(skeletons.length).toBe(12); // Verifying if there are 12 skeletons when loading
+    expect(skeletons.length).toBe(12);
   });
 });

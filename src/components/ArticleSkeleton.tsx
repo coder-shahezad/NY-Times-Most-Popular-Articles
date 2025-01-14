@@ -1,3 +1,4 @@
+import React from 'react';
 import { Card, Skeleton } from '@mantine/core';
 
 interface ArticleSkeletonProps {
