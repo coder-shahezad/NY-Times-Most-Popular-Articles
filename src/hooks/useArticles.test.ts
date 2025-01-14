@@ -1,5 +1,5 @@
 import { renderHook, waitFor } from '@testing-library/react';
-import useArticles from './useArticles';
+import { useArticles } from './useArticles';
 import { fetchArticles } from '../services/api';
 
 jest.mock('../services/api', () => ({
